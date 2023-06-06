@@ -6,8 +6,8 @@ public class App {
 		// Automated WAR
 		
 		Deck playDeck = new Deck();
-		Player player1 = new Player("Player One");
-		Player player2 = new Player("Player Two");
+		Player player1 = new Player("Sam");
+		Player player2 = new Player("Max");
 		int cardsAtStake = 2;
 		
 		
