@@ -15,20 +15,30 @@ public class App {
 		int hands = 26;
 		
 		playDeck.shuffle();
+		
+		// deal cards to each player
+		for (int i = 1; i <=hands ; i++) {
+			player1.draw(playDeck);
+			player2.draw(playDeck);
+		}
+		
+		// If you need to check the full hands, you could use player describe here.  It kind of removes the suspense though.
+		player1.describe();
+		player2.describe();
 
 		// game logic
 		for (int i = 1; i <=hands ; i++) {
-			player1.setCurrentCard(playDeck.draw());
-			player2.setCurrentCard(playDeck.draw());
+			player1.flip();
+			player2.flip();
 
-			// Watch for deck being empty, this should not happen in 2 player WAR, but is there for safety or expanding
+			// Watch for deck being empty, this should not happen in 2 player WAR, but is there for safety or expanding.
 			if (player1.getCurrentCard() == null || player2.getCurrentCard() == null) {
 				break;
 			}
 			
 			ShowCards(player1, player2);
 			
-			// calculate winner of hand
+			// calculate winner of hand - sometimes increment method must be more than one so that is not best suited for this game.
 			if (player1.getCurrentCard().getValue() > player2.getCurrentCard().getValue()) {
 				player1.setScore(player1.getScore() + cardsAtStake);
 				System.out.println(player1.getName() + " won this hand.");
@@ -44,6 +54,9 @@ public class App {
 				i++;
 			}
 			
+			System.out.println();
+			System.out.println(player1.getName() + " - Score : " + player1.getScore());
+			System.out.println(player2.getName() + " - Score : " + player2.getScore());
 			System.out.println("-------------------------");
 		}
 		
